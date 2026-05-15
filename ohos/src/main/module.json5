@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "external_path",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

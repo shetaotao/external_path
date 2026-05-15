@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -13,6 +14,10 @@ class MethodChannelExternalPath extends ExternalPathPlatform {
   Future<List<String>?> getExternalStorageDirectories() async {
     final List externalStorageDirs =
         await methodChannel.invokeMethod('getExternalStorageDirectories');
+
+    if (Platform.isOhos) {
+      return List<String>.from(externalStorageDirs);
+    }
 
     List<String> storageInfos = externalStorageDirs
         .map((storageInfoMap) => _ExStoragePath.getRootDir(storageInfoMap))
